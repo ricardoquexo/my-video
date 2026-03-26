@@ -106,10 +106,13 @@ export const PataFluxo: React.FC = () => {
     durationInFrames: 15,
   });
 
-  // Press scale: goes from 1 → 0.98 → 1
-  const pressScale = frame >= clickFrame && frame <= clickFrame + 15
-    ? interpolate(clickProgress, [0, 0.5, 1], [1, 0.975, 1])
+  // Button press: darkens and scales down slightly, only the button area
+  const buttonPressScale = frame >= clickFrame && frame <= clickFrame + 15
+    ? interpolate(clickProgress, [0, 0.5, 1], [1, 0.95, 1])
     : 1;
+  const buttonPressOpacity = frame >= clickFrame && frame <= clickFrame + 15
+    ? interpolate(clickProgress, [0, 0.5, 1], [0, 0.25, 0])
+    : 0;
 
   // Cursor slight press down on click
   const cursorClickOffset = frame >= clickFrame && frame <= clickFrame + 10
@@ -198,7 +201,6 @@ export const PataFluxo: React.FC = () => {
             position: "absolute",
             inset: 0,
             opacity: uploadOpacity,
-            transform: `scale(${pressScale})`,
           }}
         >
           <Img
@@ -207,6 +209,21 @@ export const PataFluxo: React.FC = () => {
               width: "100%",
               height: "100%",
               objectFit: "cover",
+            }}
+          />
+
+          {/* Button press overlay — only affects the button area */}
+          <div
+            style={{
+              position: "absolute",
+              top: "52.5%",
+              left: "10%",
+              width: "80%",
+              height: "6.5%",
+              borderRadius: 30,
+              transform: `scale(${buttonPressScale})`,
+              backgroundColor: `rgba(0, 0, 0, ${buttonPressOpacity})`,
+              pointerEvents: "none",
             }}
           />
         </div>
@@ -228,32 +245,42 @@ export const PataFluxo: React.FC = () => {
             }}
           />
 
-          {/* Animated progress bar overlay */}
-          {frame >= progressBarStart && frame <= PHASE2_END && (
+          {/* Dark cover to hide the original static progress bar in the image */}
+          <div
+            style={{
+              position: "absolute",
+              top: "57.8%",
+              left: "26%",
+              width: "48%",
+              height: 14,
+              backgroundColor: "#141414",
+              borderRadius: 6,
+            }}
+          />
+
+          {/* Animated progress bar drawn on top, same position as the original */}
+          <div
+            style={{
+              position: "absolute",
+              top: "58%",
+              left: "27%",
+              width: "46%",
+              height: 8,
+              borderRadius: 4,
+              overflow: "hidden",
+              backgroundColor: "#2a2a2a",
+            }}
+          >
             <div
               style={{
-                position: "absolute",
-                // Position over the existing bar in the image
-                top: "58.5%",
-                left: "28%",
-                width: "44%",
-                height: 8,
+                width: `${progressWidth}%`,
+                height: "100%",
                 borderRadius: 4,
-                overflow: "hidden",
-                backgroundColor: "rgba(50, 50, 50, 0.6)",
+                backgroundColor: "#7c3aed",
+                boxShadow: `0 0 ${12 + progressGlow * 8}px rgba(124, 58, 237, ${progressGlow})`,
               }}
-            >
-              <div
-                style={{
-                  width: `${progressWidth}%`,
-                  height: "100%",
-                  borderRadius: 4,
-                  backgroundColor: "#7c3aed",
-                  boxShadow: `0 0 ${12 + progressGlow * 8}px rgba(124, 58, 237, ${progressGlow})`,
-                }}
-              />
-            </div>
-          )}
+            />
+          </div>
         </div>
 
         {/* Phase 3: Result screen */}
