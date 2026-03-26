@@ -8,6 +8,7 @@ import {
   useVideoConfig,
   Easing,
 } from "remotion";
+import { Video } from "@remotion/media";
 import React from "react";
 
 // Phone screen dimensions (75% of 1080x1920)
@@ -233,11 +234,12 @@ export const PataFluxo: React.FC = () => {
         justifyContent: "center",
       }}
     >
-      {/* === ABERTURA: Full screen === */}
+      {/* === ABERTURA: Full screen video === */}
       {frame < ABERTURA_END && (
         <AbsoluteFill style={{ opacity: aberturaOpacity }}>
-          <Img
-            src={staticFile("pata/abertura.png")}
+          <Video
+            src={staticFile("pata/videoabertura.mp4")}
+            muted
             style={{
               width: "100%",
               height: "100%",
