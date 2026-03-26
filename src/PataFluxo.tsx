@@ -229,6 +229,24 @@ export const PataFluxo: React.FC = () => {
     }
   );
 
+  // === ANIMATED GRADIENT BACKGROUND ===
+  const gradientAngle = interpolate(
+    frame,
+    [PHONE_START, RESULT_END],
+    [135, 495],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
+  const gray1 = Math.round(10 + 15 * Math.sin(frame * 0.03));
+  const gray2 = Math.round(20 + 20 * Math.sin(frame * 0.025 + 1));
+  const gray3 = Math.round(5 + 12 * Math.sin(frame * 0.02 + 2));
+  const gradientBg = `linear-gradient(${gradientAngle}deg, rgb(${gray3},${gray3},${gray3}) 0%, rgb(${gray1},${gray1},${gray1}) 50%, rgb(${gray2},${gray2},${gray2}) 100%)`;
+  const gradientOpacity = interpolate(
+    frame,
+    [PHONE_START, PHONE_START + FADE, RESULT_END - FADE, RESULT_END],
+    [0, 1, 1, 0],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
+
   return (
     <AbsoluteFill
       style={{
@@ -251,6 +269,18 @@ export const PataFluxo: React.FC = () => {
             }}
           />
         </AbsoluteFill>
+      )}
+
+      {/* === ANIMATED GRADIENT BEHIND PHONE === */}
+      {frame >= PHONE_START && frame < RESULT_END && (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: gradientBg,
+            opacity: gradientOpacity,
+          }}
+        />
       )}
 
       {/* === PHONE SECTION === */}
