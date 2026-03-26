@@ -220,9 +220,13 @@ export const PataFluxo: React.FC = () => {
   // === LOGO (525+) ===
   const logoOpacity = interpolate(
     frame,
-    [LOGO_START, LOGO_START + fps],
+    [LOGO_START, LOGO_START + 2 * fps],
     [0, 1],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: Easing.inOut(Easing.quad),
+    }
   );
 
   return (
@@ -437,9 +441,9 @@ export const PataFluxo: React.FC = () => {
           <Img
             src={staticFile("pata/logo.png")}
             style={{
-              width: 300,
-              height: 300,
-              objectFit: "contain",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
             }}
           />
         </AbsoluteFill>
