@@ -405,6 +405,7 @@ export const PataFluxo: React.FC = () => {
                 key={img}
                 style={{
                   position: "absolute",
+                  inset: 0,
                   transform: `translateX(${translateX}px)`,
                   opacity,
                 }}
@@ -412,10 +413,9 @@ export const PataFluxo: React.FC = () => {
                 <Img
                   src={staticFile(img)}
                   style={{
-                    width: "80%",
-                    maxWidth: 864,
-                    height: "auto",
-                    objectFit: "contain",
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
                   }}
                 />
               </div>
