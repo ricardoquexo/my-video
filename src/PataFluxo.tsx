@@ -242,6 +242,7 @@ export const PataFluxo: React.FC = () => {
               width: "100%",
               height: "100%",
               objectFit: "cover",
+              objectPosition: "top",
             }}
           />
 
@@ -249,7 +250,7 @@ export const PataFluxo: React.FC = () => {
           <div
             style={{
               position: "absolute",
-              top: "57.8%",
+              top: "54.5%",
               left: "26%",
               width: "48%",
               height: 14,
@@ -262,7 +263,7 @@ export const PataFluxo: React.FC = () => {
           <div
             style={{
               position: "absolute",
-              top: "58%",
+              top: "54.8%",
               left: "27%",
               width: "46%",
               height: 8,
