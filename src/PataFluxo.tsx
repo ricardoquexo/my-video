@@ -1,6 +1,7 @@
 import {
   AbsoluteFill,
   Img,
+  Sequence,
   interpolate,
   spring,
   staticFile,
@@ -186,13 +187,7 @@ export const PataFluxo: React.FC = () => {
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
-  // === VIDEOS SECTION (replaces slides) ===
-  const videoFiles = [
-    "pata/video1.mp4",
-    "pata/video2.mp4",
-    "pata/video3.mp4",
-  ];
-
+  // === VIDEOS SECTION ===
   const getVideoOpacity = (videoStart: number) => {
     const fadeIn = interpolate(
       frame,
@@ -414,31 +409,21 @@ export const PataFluxo: React.FC = () => {
       )}
 
       {/* === VIDEOS SECTION: Full screen, no phone frame === */}
-      {frame >= SLIDES_START && frame < SLIDES_END && (
-        <AbsoluteFill>
-          {videoFiles.map((vid, i) => {
-            const videoStart = [SLIDE1_START, SLIDE2_START, SLIDE3_START][i];
-            if (frame < videoStart || frame >= videoStart + SLIDE_DURATION + FADE) return null;
-            const opacity = getVideoOpacity(videoStart);
-            return (
-              <AbsoluteFill
-                key={vid}
-                style={{ opacity }}
-              >
-                <Video
-                  src={staticFile(vid)}
-                  muted
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-              </AbsoluteFill>
-            );
-          })}
+      <Sequence from={SLIDE1_START} durationInFrames={SLIDE_DURATION} premountFor={FADE}>
+        <AbsoluteFill style={{ opacity: getVideoOpacity(SLIDE1_START) }}>
+          <Video src={staticFile("pata/video1.mp4")} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </AbsoluteFill>
-      )}
+      </Sequence>
+      <Sequence from={SLIDE2_START} durationInFrames={SLIDE_DURATION} premountFor={FADE}>
+        <AbsoluteFill style={{ opacity: getVideoOpacity(SLIDE2_START) }}>
+          <Video src={staticFile("pata/video2.mp4")} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        </AbsoluteFill>
+      </Sequence>
+      <Sequence from={SLIDE3_START} durationInFrames={SLIDE_DURATION} premountFor={FADE}>
+        <AbsoluteFill style={{ opacity: getVideoOpacity(SLIDE3_START) }}>
+          <Video src={staticFile("pata/video3.mp4")} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        </AbsoluteFill>
+      </Sequence>
 
       {/* === LOGO: Fade in to close === */}
       {frame >= LOGO_START && (
