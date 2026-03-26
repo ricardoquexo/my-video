@@ -188,9 +188,9 @@ export const PataFluxo: React.FC = () => {
 
   // === VIDEOS SECTION (replaces slides) ===
   const videoFiles = [
-    "video1.mp4",
-    "video2.mp4",
-    "video3.mp4",
+    "pata/video1.mp4",
+    "pata/video2.mp4",
+    "pata/video3.mp4",
   ];
 
   const getVideoOpacity = (videoStart: number) => {
