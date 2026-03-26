@@ -42,7 +42,7 @@ export const PataFluxo: React.FC = () => {
   const FADE = 15; // frames for transitions
 
   // === TIMELINE ===
-  const ABERTURA_END = 2 * fps; // 60
+  const ABERTURA_END = 4 * fps; // 120
   const PHONE_START = ABERTURA_END; // 60
   const UPLOAD_END = PHONE_START + 4 * fps; // 180
   const LOADING_START = UPLOAD_END; // 180
@@ -412,9 +412,10 @@ export const PataFluxo: React.FC = () => {
                 <Img
                   src={staticFile(img)}
                   style={{
-                    width: 864,
+                    width: "80%",
+                    maxWidth: 864,
+                    height: "auto",
                     objectFit: "contain",
-                    borderRadius: 24,
                   }}
                 />
               </div>
