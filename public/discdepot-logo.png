@@ -1,0 +1,19 @@
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <circle cx="150" cy="150" r="140" fill="#2c3e50" stroke="#f39c12" stroke-width="10" />
+  
+  <!-- Outer Ring (Vinyl grooves) -->
+  <circle cx="150" cy="150" r="110" fill="none" stroke="#34495e" stroke-width="2" />
+  <circle cx="150" cy="150" r="90" fill="none" stroke="#34495e" stroke-width="2" />
+  <circle cx="150" cy="150" r="70" fill="none" stroke="#34495e" stroke-width="2" />
+
+  <!-- Inner Label -->
+  <circle cx="150" cy="150" r="50" fill="#f39c12" />
+  
+  <!-- Center Hole -->
+  <circle cx="150" cy="150" r="10" fill="#ecf0f1" />
+  
+  <!-- Text -->
+  <text x="150" y="115" font-family="Arial, sans-serif" font-weight="bold" font-size="20" fill="#fff" text-anchor="middle">DISC</text>
+  <text x="150" y="200" font-family="Arial, sans-serif" font-weight="bold" font-size="20" fill="#fff" text-anchor="middle">DEPOT</text>
+</svg>
