@@ -96,7 +96,7 @@ export const PataFluxo: React.FC = () => {
   const cursorStartX = SCREEN_WIDTH * 0.85;
   const cursorStartY = SCREEN_HEIGHT * 0.85;
   const cursorTargetX = SCREEN_WIDTH * 0.5;
-  const cursorTargetY = SCREEN_HEIGHT * 0.545;
+  const cursorTargetY = SCREEN_HEIGHT * 0.59;
 
   const cursorMoveProgress = interpolate(
     frame,
@@ -227,7 +227,7 @@ export const PataFluxo: React.FC = () => {
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: "#0a0a0a",
+        backgroundColor: "#080808",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -281,7 +281,7 @@ export const PataFluxo: React.FC = () => {
             <div
               style={{
                 position: "absolute",
-                top: "52.5%",
+                top: "57%",
                 left: "10%",
                 width: "80%",
                 height: "6.5%",
@@ -410,8 +410,7 @@ export const PataFluxo: React.FC = () => {
                 <Img
                   src={staticFile(img)}
                   style={{
-                    maxWidth: 700,
-                    maxHeight: 1400,
+                    width: 864,
                     objectFit: "contain",
                     borderRadius: 24,
                   }}
