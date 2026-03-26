@@ -51,7 +51,7 @@ export const PataFluxo: React.FC = () => {
   const RESULT_START = LOADING_END; // 270
   const RESULT_END = RESULT_START + 2.5 * fps; // 345
   const SLIDES_START = RESULT_END; // 345
-  const SLIDE_DURATION = 3 * fps; // 90 frames each
+  const SLIDE_DURATION = Math.round(4.67 * fps); // ~140 frames each
   const SLIDE1_START = SLIDES_START; // 345
   const SLIDE2_START = SLIDE1_START + SLIDE_DURATION; // 405
   const SLIDE3_START = SLIDE2_START + SLIDE_DURATION; // 465
