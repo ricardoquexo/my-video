@@ -186,35 +186,27 @@ export const PataFluxo: React.FC = () => {
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
-  // === SLIDES SECTION (345–525) ===
-  const slideImages = [
-    "pata/download digital.png",
-    "pata/impresso.png",
-    "pata/canvas.png",
+  // === VIDEOS SECTION (replaces slides) ===
+  const videoFiles = [
+    "video1.mp4",
+    "video2.mp4",
+    "video3.mp4",
   ];
 
-  const getSlideTransform = (slideStart: number) => {
-    const slideIn = spring({
-      frame: frame - slideStart,
-      fps,
-      config: { damping: 200 },
-      durationInFrames: fps * 0.8,
-    });
-    const slideOut = spring({
-      frame: frame - (slideStart + SLIDE_DURATION - fps * 0.5),
-      fps,
-      config: { damping: 200 },
-      durationInFrames: fps * 0.5,
-    });
-
-    const translateX = interpolate(slideIn, [0, 1], [1080, 0]);
-    const translateXOut = interpolate(slideOut, [0, 1], [0, -1080]);
-    const opacity = frame < slideStart + SLIDE_DURATION - fps * 0.5 ? 1 : 1 - slideOut;
-
-    return {
-      translateX: frame < slideStart + SLIDE_DURATION - fps * 0.5 ? translateX : translateXOut,
-      opacity,
-    };
+  const getVideoOpacity = (videoStart: number) => {
+    const fadeIn = interpolate(
+      frame,
+      [videoStart, videoStart + FADE],
+      [0, 1],
+      { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+    );
+    const fadeOut = interpolate(
+      frame,
+      [videoStart + SLIDE_DURATION - FADE, videoStart + SLIDE_DURATION],
+      [1, 0],
+      { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+    );
+    return Math.min(fadeIn, fadeOut);
   };
 
   // === LOGO (525+) ===
@@ -421,38 +413,28 @@ export const PataFluxo: React.FC = () => {
         </div>
       )}
 
-      {/* === SLIDES SECTION: Full screen, no phone frame === */}
+      {/* === VIDEOS SECTION: Full screen, no phone frame === */}
       {frame >= SLIDES_START && frame < SLIDES_END && (
-        <AbsoluteFill
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {slideImages.map((img, i) => {
-            const slideStart = [SLIDE1_START, SLIDE2_START, SLIDE3_START][i];
-            if (frame < slideStart || frame >= slideStart + SLIDE_DURATION + FADE) return null;
-            const { translateX, opacity } = getSlideTransform(slideStart);
+        <AbsoluteFill>
+          {videoFiles.map((vid, i) => {
+            const videoStart = [SLIDE1_START, SLIDE2_START, SLIDE3_START][i];
+            if (frame < videoStart || frame >= videoStart + SLIDE_DURATION + FADE) return null;
+            const opacity = getVideoOpacity(videoStart);
             return (
-              <div
-                key={img}
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  transform: `translateX(${translateX}px)`,
-                  opacity,
-                }}
+              <AbsoluteFill
+                key={vid}
+                style={{ opacity }}
               >
-                <Img
-                  src={staticFile(img)}
+                <Video
+                  src={staticFile(vid)}
+                  muted
                   style={{
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
                   }}
                 />
-              </div>
+              </AbsoluteFill>
             );
           })}
         </AbsoluteFill>
