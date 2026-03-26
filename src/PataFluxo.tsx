@@ -227,7 +227,7 @@ export const PataFluxo: React.FC = () => {
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: "#080808",
+        backgroundColor: "#000000",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
