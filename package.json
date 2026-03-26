@@ -10,6 +10,7 @@
     "@remotion/google-fonts": "^4.0.438",
     "@remotion/media": "^4.0.440",
     "@remotion/media-utils": "^4.0.440",
+    "@remotion/paths": "^4.0.438",
     "@remotion/tailwind-v4": "4.0.438",
     "@remotion/zod-types": "4.0.438",
     "react": "19.2.3",
