@@ -250,7 +250,7 @@ export const PataFluxo: React.FC = () => {
           <div
             style={{
               position: "absolute",
-              top: "54.5%",
+              top: "56.2%",
               left: "26%",
               width: "48%",
               height: 14,
@@ -263,7 +263,7 @@ export const PataFluxo: React.FC = () => {
           <div
             style={{
               position: "absolute",
-              top: "54.8%",
+              top: "56.5%",
               left: "27%",
               width: "46%",
               height: 8,
