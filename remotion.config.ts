@@ -8,5 +8,5 @@ import { enableTailwind } from "@remotion/tailwind-v4";
 
 Config.setVideoImageFormat("jpeg");
 Config.setOverwriteOutput(true);
-Config.setOutputLocation("C:\\Users\\ricar\\Google Drive\\renders");
+Config.setOutputLocation("Q:\\QUEXO\\Dropbox\\0ArteByQuexo\\04 - Claude\\Vìdeos Remotion");
 Config.overrideWebpackConfig(enableTailwind);
