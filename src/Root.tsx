@@ -6,7 +6,9 @@ import { PassoAPassoPata } from "./PassoAPassoPata";
 import { BeiraRioVideo, calculateBeiraRioMetadata } from "./BeiraRioVideo";
 import { DiscDepotVideo } from "./DiscDepot/DiscDepot";
 import { AnimatedChart } from "./AnimatedChart";
+import { ValorizacaoChart } from "./ValorizacaoChart";
 import { PataVideo } from "./PataVideo";
+import { PataFluxo } from "./PataFluxo";
 import { LoadingTake } from "./LoadingTake";
 
 // Each <Composition> is an entry in the sidebar!
@@ -25,6 +27,14 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="PataVideo"
         component={PataVideo}
+        durationInFrames={900}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="PataFluxo"
+        component={PataFluxo}
         durationInFrames={900}
         fps={30}
         width={1080}
@@ -61,6 +71,14 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="AnimatedChart"
         component={AnimatedChart}
+        durationInFrames={180}
+        fps={30}
+        width={1080}
+        height={1350}
+      />
+      <Composition
+        id="ValorizacaoChart"
+        component={ValorizacaoChart}
         durationInFrames={180}
         fps={30}
         width={1080}

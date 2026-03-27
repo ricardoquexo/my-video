@@ -8,4 +8,5 @@ import { enableTailwind } from "@remotion/tailwind-v4";
 
 Config.setVideoImageFormat("jpeg");
 Config.setOverwriteOutput(true);
+Config.setOutputLocation("Q:\\QUEXO\\Dropbox\\0ArteByQuexo\\04 - Claude\\Videos Remotion\\PataFluxo.mp4");
 Config.overrideWebpackConfig(enableTailwind);
